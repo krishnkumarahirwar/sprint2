@@ -1,0 +1,22 @@
+<h1 style="margin-left: 42%;">Cancel Booking</h1>
+<div class="container">
+    <form #cancelForm="ngForm" (ngSubmit)="cancelBooking(cancelForm)">
+        <div class="form-group">
+            <label>Booking Id</label>
+            <input type="text" #bookingId="ngModel" class="form-control" pattern="^\d+$" name="bookingId" placeholder="Enter the Booking Id" required maxlength="4" ngModel>
+        </div>
+        <div *ngIf="bookingId.invalid && (bookingId.dirty || bookingId.touched)" class="alert alert-danger">
+            <div *ngIf="bookingId.errors.required">
+                Booking Id is required.
+            </div>
+
+            <div *ngIf="bookingId.errors.pattern">
+                Booking Id should be numeric.
+            </div>
+        </div>
+       <button [disabled]="cancelForm.form.invalid" class="btn btn-primary" type="submit">Search</button>
+    </form>
+</div>
+<div class="container" *ngIf="show">
+   <small style="color: red;">{{msg}}</small>
+</div>
